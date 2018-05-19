@@ -24,12 +24,12 @@ body {
 .btn {
 
     position: relative;
-    left:100px;
+    left:80px;
 }
 
 h1 {
     color: white;
-    font-size: 80px;
+    font-size: 70px;
     text-align: left;
     font-family: 'Berkshire Swash', cursive;
     padding: 30px;
@@ -48,7 +48,7 @@ h2, h3 {
     background-color: rgb(228, 69, 41);
 }
 
-#placeholders {
-    letter-spacing: 2px;
+#underscore {
+    letter-spacing: 3px;
     font-size: 40px;
 }

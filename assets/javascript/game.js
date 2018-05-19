@@ -1,13 +1,14 @@
 // Reference the DOM element 
 
-var $newGameButton = document.getElementById("new-game-button");
-var $placerholders = document.getElementById("placeholders");
-var $guessedLetters = document.getElementById("guessed-letters");
-var $guessesLeft = document.getElementById("guesses-left");
-var $wins = document.getElementById("wins");
-var $losses = document.getElementById("losses");
+var theGameButton = document.getElementById("new-game-button");
+var underscore = document.getElementById("underscore");
+var falseLettersGuessed = document.getElementById("incorrect-letters=guessed");
+var guessesLeftDom = document.getElementById("guesses-left");
+var winsDom = document.getElementById("wins");
+var lossesDom = document.getElementById("losses");
 
 // Create car for game (wordBank, wins, losses, picked letter, guesses left, game ........)
+
 
 var wordBank = ["Hey You", "Layla", "Wish You were Here", "The Eye of The Tiger", "Imagine", "Don't cry"];
 var wins = 0;
@@ -33,7 +34,7 @@ function newGame() {
     pickedWord = wordBank[Math.floor(Math.random() * wordBank.length)];
 
     // create placeholder out of new pickWord 
-    for (var i =0; i < pickedWord.length; i++) {
+    for (var i = 0; i < pickedWord.length; i++) {
         if (pickedWord[i] == " ") {
             pickedWordPlaceHolderArr.push(" ");
         }
@@ -43,10 +44,9 @@ function newGame() {
     }
 
     // write all new infor to DOW 
-    $guessesLeft.textContent = guessesLeft;
-    $placerholders.textContent = pickedWordPlaceHolderArr.join("");
-    $guessedLetters.textContent = incorrectLetterBank;
-
+    guessesLeftDom.textContent = guessesLeft;
+    underscore.textContent = pickedWordPlaceHolderArr.join("");
+    // falseLettersGuessed.textContent = incorrectLetterBank;
 }
 
 
@@ -55,58 +55,77 @@ function newGame() {
 function letterGueses(letter) {
 
     if (gameRunning === true && guessedLetterBank.indexOf(letter) === -1) {
-
+        console.log(letter);
         // run game logic 
         guessedLetterBank.push(letter);
 
         // check if guessed letter is in my picked word 
-        for (var i=o; i < pickedWord.length; i++) {
+        for (var i = 0; i < pickedWord.length; i++) {
             if (pickedWord[i].toLocaleLowerCase() == letter.toLocaleLowerCase()) {
                 // if a match swap that with acctual word picked
                 pickedWordPlaceHolderArr[i] = pickedWord[i];
             }
         }
 
-        $placerholders.textContent = pickedWordPlaceHolderArr.join("");
+        underscore.textContent = pickedWordPlaceHolderArr.join("");
         checkIncorrect(letter);
+        console.log(letter);
     }
     else {
-        if (!gameRunning) {
-            alert("The Game isnt's runnig");  
+        if (gameRunning === false) {
+            alert("The Game isnt's runnig");
         } else {
             alert("You already guessed this letter");
         }
     }
 }
 
-// checki if letter is incorrect
+// check if letter is incorrect
 
 function checkIncorrect(letter) {
     if (pickedWordPlaceHolderArr.indexOf(letter.toLocaleLowerCase()) === -1
-    
-    && pickedWordPlaceHolderArr.indexOf(letter.toUpperCase()) === -1) {
+
+        && pickedWordPlaceHolderArr.indexOf(letter.toUpperCase()) === -1) {
 
         guessesLeft--;
         incorrectLetterBank.push(letter);
-        $guessedLetters.textContent = incorrectLetterBank.join(" ");
-        $guessesLeft.textContent = guessesLeft;
-     }
+        falseLettersGuessed.innerHTML = incorrectLetterBank.join(" ");
+        // write new amount of guesses left to DOM
+        guessesLeftDom.textContent = guessesLeft;
+    }
+    checkLoss();
+}
+
+
+// check loses
+function checkLoss() {
+    if (guessesLeft === 0){
+        losses++;
+        gameRunning = false;
+        lossesDom.innerHTML = losses;
+        underscore.innerHTML = pickedWord;
+    }
+    checkWin();
 }
 
 // checkwins
 
+function checkWin() {
+    if (pickedWord.toLocaleLowerCase() === pickedWordPlaceHolderArr.join("".toLocaleLowerCase())) {
+        wins++;
+        gameRunning = false;
+        winsDom.innerHTML = wins;
+    }
+}
 
-
-
-// check loses
 
 // add event listner to new game 
 
-$newGameButton.addEventListener("click", newGame);
+theGameButton.addEventListener("click", newGame);
 
-// add onkeyup trigger lettergueses
+// add onkeyup trigger letter guesses
 
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         letterGueses(event.key);
     }
