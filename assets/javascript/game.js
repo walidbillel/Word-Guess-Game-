@@ -10,7 +10,7 @@ var lossesDom = document.getElementById("losses");
 // Create car for game (wordBank, wins, losses, picked letter, guesses left, game ........)
 
 
-var wordBank = ["Hey You", "Layla", "Wish You were Here", "The Eye of The Tiger", "Imagine", "Don't cry"];
+var wordBank = ["Hey You", "Comfortably Numb", "Wish You were Here", "The Wall", "High Hopes", "Money"];
 var wins = 0;
 var losses = 0;
 var guessesLeft = 12;
@@ -93,7 +93,7 @@ function checkIncorrect(letter) {
         // write new amount of guesses left to DOM
         guessesLeftDom.textContent = guessesLeft;
     }
-    checkLoss();
+   
 }
 
 
@@ -105,7 +105,7 @@ function checkLoss() {
         lossesDom.innerHTML = losses;
         underscore.innerHTML = pickedWord;
     }
-    checkWin();
+   
 }
 
 // checkwins

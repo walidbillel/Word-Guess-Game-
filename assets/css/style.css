@@ -5,7 +5,7 @@ body {
 .background {
 
    
-    background-image: url(https://i0.wp.com/blog.perspectivesjournal.org/wp-content/uploads/sites/2/2014/12/vinyl-records2.jpg);
+    background-image: url(http://www.guitarnoise.com/images/features/pink-floyd-wallpaper-1024x585.jpg);
     background-size: cover;
     background-blend-mode: multiply;
 }
@@ -28,13 +28,21 @@ body {
 }
 
 h1 {
-    color: white;
+    color:rgb(0, 5, 71);
     font-size: 70px;
+    text-align: center;
+    font-family: 'Berkshire Swash', cursive;
+    padding: 5px;
+    position: relative;
+    bottom: 40px;
+}
+h2 {
+    color:black;
+    font-size: 50px;
     text-align: left;
     font-family: 'Berkshire Swash', cursive;
-    padding: 30px;
-}
 
+}
 img {
     opacity: 0.7;
 }
