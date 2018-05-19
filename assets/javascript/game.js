@@ -2,18 +2,20 @@
 
 var theGameButton = document.getElementById("new-game-button");
 var underscore = document.getElementById("underscore");
-var falseLettersGuessed = document.getElementById("incorrect-letters=guessed");
+var incorrectLettersGuessed = document.getElementById("incorrect-letters-guessed");
 var guessesLeftDom = document.getElementById("guesses-left");
 var winsDom = document.getElementById("wins");
 var lossesDom = document.getElementById("losses");
 
-// Create car for game (wordBank, wins, losses, picked letter, guesses left, game ........)
+console.log(incorrectLettersGuessed)
+
+// Create our variables for the game including (wordBank, wins, losses, picked letter, guesses left, game ........)
 
 
 var wordBank = ["Hey You", "Comfortably Numb", "Wish You were Here", "The Wall", "High Hopes", "Money"];
 var wins = 0;
 var losses = 0;
-var guessesLeft = 12;
+var guessesLeft = 8;
 var gameRunning = false;
 var pickedWord = "";
 var pickedWordPlaceHolderArr = [];
@@ -21,11 +23,13 @@ var guessedLetterBank = [];
 var incorrectLetterBank = [];
 
 
-// NEW game fumctiom reset all stats, pick new word
+// NEW game fumctiom reset all stats, and pick a new word from our wordBank
+
 function newGame() {
+
     // rest all game info 
     gameRunning = true;
-    guessesLeft = 12;
+    guessesLeft = 8;
     guessedLetterBank = [];
     incorrectLetterBank = [];
     pickedWordPlaceHolderArr = [];
@@ -35,18 +39,21 @@ function newGame() {
 
     // create placeholder out of new pickWord 
     for (var i = 0; i < pickedWord.length; i++) {
-        if (pickedWord[i] == " ") {
+        if (pickedWord[i] === " ") {
+            // if there is a space in the word then push in an empty space
             pickedWordPlaceHolderArr.push(" ");
         }
+        // if there is no empty space push underscore
         else {
             pickedWordPlaceHolderArr.push("_");
         }
     }
 
-    // write all new infor to DOW 
+    // write all new info to DOM
     guessesLeftDom.textContent = guessesLeft;
     underscore.textContent = pickedWordPlaceHolderArr.join("");
-    // falseLettersGuessed.textContent = incorrectLetterBank;
+    console.log(incorrectLettersGuessed)
+    incorrectLettersGuessed.textContent = incorrectLetterBank;
 }
 
 
@@ -68,52 +75,66 @@ function letterGueses(letter) {
         }
 
         underscore.textContent = pickedWordPlaceHolderArr.join("");
+        // pass the checkIncorrect function that takes in the same param (letter) to check if incorrect then run the function
         checkIncorrect(letter);
         console.log(letter);
     }
     else {
+        // if the user presses any key before pressing the new button alert below
         if (gameRunning === false) {
             alert("The Game isnt's runnig");
         } else {
+            // if the user presses the same letter twice alert
             alert("You already guessed this letter");
         }
     }
 }
 
-// check if letter is incorrect
+// check if the letter picked is incorrect
 
 function checkIncorrect(letter) {
+    // check for both lower and upper case in case the user presses the shift or caps lock is on. 
+    // if the letter doesn't make it to the pickedWordPlaceHolderArr then it's incorrect
     if (pickedWordPlaceHolderArr.indexOf(letter.toLocaleLowerCase()) === -1
-
         && pickedWordPlaceHolderArr.indexOf(letter.toUpperCase()) === -1) {
-
+        // decreament guessesleft 
         guessesLeft--;
+        // push the letter
         incorrectLetterBank.push(letter);
-        falseLettersGuessed.innerHTML = incorrectLetterBank.join(" ");
-        // write new amount of guesses left to DOM
+        // write the letter in the #incorrect-letter-guessed
+        incorrectLettersGuessed.textContent = incorrectLetterBank.join(" ");
+        // write new amount of guesses left on the webpage
         guessesLeftDom.textContent = guessesLeft;
+        
     }
-   
+   checkLoss();
 }
 
 
 // check loses
 function checkLoss() {
     if (guessesLeft === 0){
+        // increament the losses score
         losses++;
+        // set the game to stop
         gameRunning = false;
+        // write the new losses score on the page
         lossesDom.innerHTML = losses;
+        // Show the correct word to the user
         underscore.innerHTML = pickedWord;
     }
-   
+  checkWin(); 
 }
 
 // checkwins
 
 function checkWin() {
-    if (pickedWord.toLocaleLowerCase() === pickedWordPlaceHolderArr.join("".toLocaleLowerCase())) {
+    if (pickedWord.toLocaleLowerCase() === pickedWordPlaceHolderArr.join("").toLocaleLowerCase()) {
+        // increament the wins
         wins++;
+        // set the game to stop
         gameRunning = false;
+        // write the new wins score on
         winsDom.innerHTML = wins;
     }
 }

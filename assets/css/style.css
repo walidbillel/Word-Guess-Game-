@@ -38,13 +38,13 @@ h1 {
 }
 h2 {
     color:black;
-    font-size: 50px;
+    font-size: 35px;
     text-align: left;
     font-family: 'Berkshire Swash', cursive;
 
 }
 img {
-    opacity: 0.7;
+    opacity: 0.5;
 }
 
 h2, h3 {
@@ -57,6 +57,13 @@ h2, h3 {
 }
 
 #underscore {
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     font-size: 40px;
+}
+
+p {
+    font-size: 20px;
+    font-family: 'Berkshire Swash', cursive;
+    padding: 10px;
+    color: rgb(29, 29, 29);
 }
