@@ -7,6 +7,7 @@ var guessesLeftDom = document.getElementById("guesses-left");
 var winsDom = document.getElementById("wins");
 var lossesDom = document.getElementById("losses");
 
+
 console.log(incorrectLettersGuessed)
 
 // Create our variables for the game including (wordBank, wins, losses, picked letter, guesses left, game ........)
@@ -22,7 +23,6 @@ var pickedWordPlaceHolderArr = [];
 var guessedLetterBank = [];
 var incorrectLetterBank = [];
 
-
 // NEW game fumctiom reset all stats, and pick a new word from our wordBank
 
 function newGame() {
@@ -33,7 +33,7 @@ function newGame() {
     guessedLetterBank = [];
     incorrectLetterBank = [];
     pickedWordPlaceHolderArr = [];
-
+   
     // pick a new word 
     pickedWord = wordBank[Math.floor(Math.random() * wordBank.length)];
 
@@ -82,10 +82,10 @@ function letterGueses(letter) {
     else {
         // if the user presses any key before pressing the new button alert below
         if (gameRunning === false) {
-            alert("The Game isnt's runnig");
+            alert("The Game isnt's runnig, Press The New Game Button to Start!");
         } else {
             // if the user presses the same letter twice alert
-            alert("You already guessed this letter");
+            alert("You already guessed this letter, try another one!");
         }
     }
 }
