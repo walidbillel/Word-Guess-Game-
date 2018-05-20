@@ -82,7 +82,7 @@ function letterGueses(letter) {
     else {
         // if the user presses any key before pressing the new button alert below
         if (gameRunning === false) {
-            alert("The round is finished, Press The New Game Button to restart a new one!");
+            alert("Press The New Game Button To Start!");
         } else {
             // if the user presses the same letter twice alert
             alert("You already guessed this letter, try another one!");
