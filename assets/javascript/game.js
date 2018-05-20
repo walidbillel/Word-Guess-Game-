@@ -1,5 +1,5 @@
 // Reference the DOM element 
-
+// This is where we update our webpage
 var theGameButton = document.getElementById("new-game-button");
 var underscore = document.getElementById("underscore");
 var incorrectLettersGuessed = document.getElementById("incorrect-letters-guessed");
@@ -10,7 +10,7 @@ var lossesDom = document.getElementById("losses");
 
 console.log(incorrectLettersGuessed)
 
-// Create our variables for the game including (wordBank, wins, losses, picked letter, guesses left, game ........)
+// Create our variables for the game including (wordBank, wins, losses, pickedWord, guessesleft, incorrectLetterBank, and so on)
 
 
 var wordBank = ["Hey You", "Comfortably Numb", "Wish You were Here", "The Wall", "High Hopes", "Money"];
@@ -140,13 +140,14 @@ function checkWin() {
 }
 
 
-// add event listner to new game 
+// add event listner to new game so whenever the button is pressed the newGame function is executed
 
 theGameButton.addEventListener("click", newGame);
 
 // add onkeyup trigger letter guesses
 
 document.onkeyup = function (event) {
+    // keyCode from 65 to 90 will only trigger letters and ignore all rermaining keys
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         letterGueses(event.key);
     }
