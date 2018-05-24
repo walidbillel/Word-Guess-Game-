@@ -67,3 +67,7 @@ p {
     padding: 10px;
     color: rgb(29, 29, 29);
 }
+
+#incorrect-letters-guessed {
+    font-size: 40;
+}
