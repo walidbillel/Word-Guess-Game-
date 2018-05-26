@@ -116,6 +116,8 @@ function checkLoss() {
     if (guessesLeft === 0){
         // increament the losses score
         losses++;
+
+        alert("You Lost! Press the new game button and give it another shot");
         // set the game to stop
         gameRunning = false;
         // write the new losses score on the page
@@ -132,8 +134,10 @@ function checkWin() {
     if (pickedWord.toLocaleLowerCase() === pickedWordPlaceHolderArr.join("").toLocaleLowerCase()) {
         // increament the wins
         wins++;
+
+        alert("You won!")
         // set the game to stop
-        gameRunning = false;
+        gameRunning = true;
         // write the new wins score on
         winsDom.innerHTML = wins;
     }
